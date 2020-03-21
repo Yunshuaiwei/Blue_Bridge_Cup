@@ -1,5 +1,7 @@
 package Day02;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
