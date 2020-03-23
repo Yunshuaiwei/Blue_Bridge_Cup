@@ -13,7 +13,6 @@ public class Main6 {
         int x=sc.nextInt();
         int y=sc.nextInt();
         int [][]arr=new int [x][y];
-//        int [] result=new int[x*y];
         int index=0;
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < y; j++) {
@@ -22,7 +21,6 @@ public class Main6 {
         }
         int i=0;
         int j=0;
-//        index=x*y;
         char tag='A';
         do {
             switch (tag) {
@@ -34,7 +32,6 @@ public class Main6 {
                             System.out.print(" "+arr[i][j]);
                         }
                         index++;
-//                        result[index++] = arr[i][j];
                         arr[i][j] = 0;
                         i++;
                     }
@@ -45,7 +42,6 @@ public class Main6 {
                 case 'B'://右
                     while (j < y && arr[i][j] != 0) {
                         System.out.print(" "+arr[i][j]);
-//                        result[index++] = arr[i][j];
                         arr[i][j] = 0;
                         j++;
                         index++;
@@ -56,7 +52,6 @@ public class Main6 {
                     break;
                 case 'C'://上
                     while (i >=0 && arr[i][j] != 0) {
-//                        result[index++] = arr[i][j];
                         System.out.print(" "+arr[i][j]);
                         arr[i][j] = 0;
                         index++;
@@ -68,7 +63,6 @@ public class Main6 {
                     break;
                 case 'D'://左
                     while (j >=0 && arr[i][j] != 0) {
-//                        result[index++] = arr[i][j];
                         System.out.print(" "+arr[i][j]);
                         arr[i][j] = 0;
                         index++;
@@ -81,8 +75,5 @@ public class Main6 {
             }
         } while (index != (x * y));
 
-//        for (int k = 0; k < result.length; k++) {
-//            System.out.print(k!=result.length-1?result[k]+" ": result[k]);
-//        }
     }
 }

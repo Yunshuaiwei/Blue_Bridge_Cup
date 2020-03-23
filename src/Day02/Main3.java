@@ -3,6 +3,7 @@ package Day02;
 import java.util.Scanner;
 
 /**
+ * 2n皇后
  * @author DELL
  * @Date 2020/3/20 12:08
  **/
@@ -41,7 +42,6 @@ public class Main3 {
                 check(n+1);
             }
         }
-
     }
 
     /**
