@@ -1,8 +1,6 @@
 package Day02;
 
-import org.junit.Test;
-
-import java.util.Arrays;
+import java.io.BufferedInputStream;
 import java.util.Scanner;
 
 /**
@@ -11,67 +9,80 @@ import java.util.Scanner;
  **/
 public class Main6 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(new BufferedInputStream(System.in));
         int x=sc.nextInt();
         int y=sc.nextInt();
-        sc.close();
         int [][]arr=new int [x][y];
-        int [] result=new int[x*y];
-        int index=1;
+//        int [] result=new int[x*y];
+        int index=0;
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < y; j++) {
-                arr[i][j]=index++;
+                arr[i][j]=sc.nextInt();
             }
         }
-        index=0;
         int i=0;
         int j=0;
+//        index=x*y;
         char tag='A';
         do {
             switch (tag) {
-                case 'A':
+                case 'A'://下
                     while (i < x && arr[i][j] != 0) {
-                        result[index++] = arr[i][j];
+                        if(i==0&&j==0){
+                            System.out.print(arr[i][j]);
+                        }else{
+                            System.out.print(" "+arr[i][j]);
+                        }
+                        index++;
+//                        result[index++] = arr[i][j];
                         arr[i][j] = 0;
                         i++;
                     }
-                    if (j + 1 < y && arr[--i][j + 1] != 0) {
+                    if (j + 1 < y && arr[--i][++j] != 0) {
                         tag = 'B';
                     }
                     break;
-                case 'B':
+                case 'B'://右
                     while (j < y && arr[i][j] != 0) {
-                        result[index++] = arr[i][j];
+                        System.out.print(" "+arr[i][j]);
+//                        result[index++] = arr[i][j];
                         arr[i][j] = 0;
                         j++;
+                        index++;
                     }
-                    if (i - 1 > 0 && arr[i - 1][j] != 0) {
+                    if (i - 1 > 0 && arr[--i][--j] != 0) {
                         tag = 'C';
                     }
                     break;
-                case 'C':
-                    while (i > 0 && arr[i][j] != 0) {
-                        result[index++] = arr[i][j];
+                case 'C'://上
+                    while (i >=0 && arr[i][j] != 0) {
+//                        result[index++] = arr[i][j];
+                        System.out.print(" "+arr[i][j]);
                         arr[i][j] = 0;
+                        index++;
                         i--;
                     }
-                    if (j - 1 > 0 && arr[++i][j - 1] != 0) {
+                    if (j - 1 >=0 && arr[++i][--j] != 0) {
                         tag = 'D';
                     }
                     break;
-                case 'D':
-                    while (j > 0 && arr[i][j] != 0) {
-                        result[index++] = arr[i][j];
+                case 'D'://左
+                    while (j >=0 && arr[i][j] != 0) {
+//                        result[index++] = arr[i][j];
+                        System.out.print(" "+arr[i][j]);
                         arr[i][j] = 0;
+                        index++;
                         j--;
                     }
-                    if (i + 1 < x && arr[i + 1][++j] != 0) {
+                    if (i + 1 < x && arr[++i][++j] != 0) {
                         tag = 'A';
                     }
                     break;
             }
         } while (index != (x * y));
-        System.out.println(Arrays.toString(result));
-    }
 
+//        for (int k = 0; k < result.length; k++) {
+//            System.out.print(k!=result.length-1?result[k]+" ": result[k]);
+//        }
+    }
 }
