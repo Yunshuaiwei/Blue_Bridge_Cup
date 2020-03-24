@@ -15,5 +15,6 @@ public class Main {
         int s=input.nextInt();
         int l=input.nextInt();
 
+
     }
 }
