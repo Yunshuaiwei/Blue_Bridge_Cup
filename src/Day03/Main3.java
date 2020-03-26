@@ -10,17 +10,17 @@ public class Main3 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int n = input.nextInt();//芯片个数
-        int[][] map = new int[n][n];
+        int[][] map = new int[n][n];//表
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 map[i][j] = input.nextInt();
             }
         }
         input.close();
-        HashSet<Integer> result = new HashSet<>();
+        HashSet<Integer> result = new HashSet<>();//用于保存结果
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (i == j) {
+                if (i == j) {//排除芯片对本身进行测试的情况
                     continue;
                 }
                 if (map[i][j] == 1) {
@@ -38,12 +38,14 @@ public class Main3 {
         int[] tmp = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
             //因为给check传递的数组是int型，所以此处将Object类型的数组转换成int保存在tmp中
+            //将Object转int不能直接转换，此处先将Object转为String，再转为int
             tmp[i] = Integer.parseInt(String.valueOf(arr[i]));
         }
         result.clear();
-        //调用此方法后保证返回的结果一定是好的芯片
+        //调用此方法后保证返回的是好芯片
         int check = check(tmp, map);
-        //通过好的芯片再去检测其他芯片，则结果一定正确，因为题中说明用好芯片测试其他芯片时，能正确给出被测试芯片是好还是坏
+        //通过好的芯片再去检测其他芯片，则结果一定正确，
+        //因为题中说明用好芯片测试其他芯片时，能正确给出被测试芯片是好还是坏
         for (int i = 0; i < n; i++) {
             if (map[check][i] == 1) {
                 result.add(i + 1);
@@ -57,17 +59,18 @@ public class Main3 {
 
     /**
      * 排除两个都是坏芯片但是检测结果都为1的情况
+     *
      * @param arr 第一次遍历后的中间结果
      * @param map 检测表
      * @return 返回的芯片一定是好的
      */
     public static int check(int[] arr, int[][] map) {
-        int a = 0;
+        int check = 0;
         int j;
         for (int value : arr) {
-            a = value - 1;
+            check = value - 1;
             for (j = 0; j < arr.length; j++) {
-                if (map[a][arr[j] - 1] != 1) {
+                if (map[check][arr[j] - 1] != 1) {
                     break;
                 }
             }
@@ -75,6 +78,6 @@ public class Main3 {
                 break;
             }
         }
-        return a;
+        return check;
     }
 }
